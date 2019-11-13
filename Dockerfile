@@ -1,9 +1,20 @@
-FROM ros:dashing-ros-base-bionic
-SHELL ["/bin/bash", "-c"]
- 
-# install ros2 desktop packages
-RUN apt-get update && apt-get install -y \
-    ros-dashing-desktop=0.7.2-1* \
-    && rm -rf /var/lib/apt/lists/*
- 
+FROM ubuntu:18.04
+MAINTAINER jeongsoon kim
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update
+RUN apt-get install -y apache2 # Install Apahe web server (only 'yes')
+#RUN apt-get install -y software-properties-common
+#RUN add-apt-repository ppa:ondrej/php
+#RUN apt-get update
+#RUN apt-get install -y php5.6
+
+# Connect PHP & MYSQL
+#RUN apt-get install -y php5.6-mysql
+
+
+EXPOSE 80
+
+CMD ["apachectl", "-D", "FOREGROUND"]
 
