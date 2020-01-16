@@ -1,7 +1,5 @@
-FROM ubuntu:18.04
+FROM centos
 MAINTAINER jeongsoon kim
 
-RUN apt-get update
-
 # Connect PHP & MYSQL
-RUN apt-get install -y omping
+RUN yum install -y omping
